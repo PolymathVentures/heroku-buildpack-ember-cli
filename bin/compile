@@ -151,9 +151,9 @@ else
   fi
 fi
 
-status "Installing bower which is required by other dependencies"
-npm install bower --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
-PATH=$build_dir/node_modules/bower/bin:$PATH
+#status "Installing bower which is required by other dependencies"
+#npm install bower --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
+#PATH=$build_dir/node_modules/bower/bin:$PATH
 
 if [ -d "$env_dir" ]; then
   status "Exporting config vars to environment"
@@ -186,7 +186,7 @@ npm install --quiet --no-optional --userconfig $build_dir/.npmrc 2>&1 | indent
 PATH=$build_dir/node_modules/.bin:$build_dir/node_modules/ember-cli/node_modules/.bin:$PATH
 
 status "Pruning cached bower dependencies not specified in bower.json"
-bower prune 2>&1 | indent
+#bower prune 2>&1 | indent
 
 # Persist goodies like node-version in the slug
 mkdir -p $build_dir/.heroku
@@ -223,10 +223,10 @@ if [ "$GIT_SSH_KEY" != "" ]; then
 fi
 
 # If app has a bower_components directory, cache it.
-if test -d $build_dir/bower_components; then
-  status "Caching bower_components directory for future builds"
-  cp -r $build_dir/bower_components $cache_dir/
-fi
+# if test -d $build_dir/bower_components; then
+#  status "Caching bower_components directory for future builds"
+#  cp -r $build_dir/bower_components $cache_dir/
+#fi
 
 if test -f $build_dir/hooks/before_hook.sh; then
   status "Before hook detected. Running..."
